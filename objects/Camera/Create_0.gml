@@ -62,12 +62,20 @@ vb_trees = [
     load_model("tree4.d3d"),
 ];
 
+vb_tree_barycentric = [
+    vertex_buffer_add_barycentric(vb_trees[0]),
+    vertex_buffer_add_barycentric(vb_trees[1]),
+    vertex_buffer_add_barycentric(vb_trees[2]),
+    vertex_buffer_add_barycentric(vb_trees[3]),
+];
+
 var n = 50;
 tree_positions = array_create(n);
 for (var i = 0; i < n; i++) {
     var index = irandom(array_length(vb_trees) - 1);
     tree_positions[i] = {
         vbuff: vb_trees[index],
+        vbuff_bary: vb_tree_barycentric[index],
         x: random_range(0, 1600),
         y: random_range(0, 900),
     };

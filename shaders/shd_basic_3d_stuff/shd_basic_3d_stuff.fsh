@@ -1,7 +1,7 @@
 #extension GL_OES_standard_derivatives : enable
 
 varying vec2 v_vTexcoord;
-varying vec4 v_vColour;
+varying vec4 v_vBarycentric;
 
 varying vec3 v_worldPosition;
 
@@ -13,7 +13,7 @@ float fromDepthColor(vec3 color) {
 }
 
 void main() {
-    vec4 starting_color = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord);
+    vec4 starting_color = v_vBarycentric * texture2D(gm_BaseTexture, v_vTexcoord);
     
     vec4 lightAmbient = vec4(0.25, 0.25, 0.25, 1);
     vec3 lightDirection = normalize(lightDirection);
